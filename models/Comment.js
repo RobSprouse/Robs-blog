@@ -1,8 +1,8 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/connection.js";
 
-class Blog extends Model {}
-Blog.init(
+class Comment extends Model {}
+Comment.init(
      {
           id: {
                type: DataTypes.INTEGER,
@@ -10,12 +10,8 @@ Blog.init(
                primaryKey: true,
                autoIncrement: true,
           },
-          title: {
+          comment_text: {
                type: DataTypes.STRING,
-               allowNull: false,
-          },
-          content: {
-               type: DataTypes.TEXT,
                allowNull: false,
           },
           date_created: {
@@ -30,14 +26,21 @@ Blog.init(
                     key: "id",
                },
           },
+          blog_id: {
+               type: DataTypes.INTEGER,
+               references: {
+                    model: "blog",
+                    key: "id",
+               },
+          },
      },
      {
           sequelize,
           timestamps: false,
           freezeTableName: true,
           underscored: true,
-          modelName: "blog",
+          modelName: "comment",
      }
 );
 
-export default Blog;
+export default Comment;

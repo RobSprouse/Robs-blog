@@ -3,3 +3,5 @@
 DROP DATABASE IF EXISTS robsBlog_db;
 
 CREATE DATABASE robsBlog_db;
+
+USE robsBlog_db;

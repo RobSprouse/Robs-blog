@@ -15,4 +15,4 @@ if (process.env.JAWSDB_URL) {
      });
 }
 
-export { sequelize };
+export default sequelize;
