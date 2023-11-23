@@ -131,3 +131,6 @@ dist
 
 #development files not needed in production
 /developmentFiles
+
+# Workspace specific files
+.code-workspace
