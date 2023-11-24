@@ -2,7 +2,7 @@ import path from "path";
 import express from "express";
 import session from "express-session";
 import exphbs from "express-handlebars";
-import router from './controllers/index.js';
+import router from "./controllers/index.js";
 import formateDate from "./utils/helpers.js";
 import sequelize from "./config/connection.js";
 import connectSessionSequelize from "connect-session-sequelize";
@@ -41,6 +41,11 @@ app.use(express.static(path.join("public")));
 
 app.use(router);
 
-sequelize.sync({ force: false }).then(() => {
-     app.listen(PORT, () => console.log("Now listening"));
-});
+sequelize
+     .sync({ force: false })
+     .then(() => {
+          app.listen(PORT, () => console.log("Now listening"));
+     })
+     .catch((error) => {
+          console.error("Failed to start server: ", error);
+     });

@@ -2,7 +2,6 @@ import sequelize from "../config/connection.js";
 import User from "../models/User.js";
 import Blog from "../models/Blog.js";
 import Comment from "../models/Comment.js";
-import bcrypt from "bcrypt";
 
 import userData from "./userData.js";
 import blogData from "./blogData.js";
