@@ -1,0 +1,8 @@
+{{#each blogs}}
+     <div class="blog-post">
+          <h2 class="blog-title">{{this.title}}</h2>
+          <p class="blog-content">{{this.content}}</p>
+          <p class="blog-author">Posted by: {{this.user.username}}</p>
+          <p class="blog-date">Date: {{this.date_created}}</p>
+     </div>
+{{/each}}
