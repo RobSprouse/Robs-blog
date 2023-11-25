@@ -1,4 +1,4 @@
-import path from "path";
+// import path from "path";
 import express from "express";
 import session from "express-session";
 import exphbs from "express-handlebars";
@@ -6,13 +6,14 @@ import router from "./controllers/index.js";
 import formateDate from "./utils/helpers.js";
 import sequelize from "./config/connection.js";
 import connectSessionSequelize from "connect-session-sequelize";
-// COMMENT: added ti see if it will work
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import dotenv from "dotenv";
+dotenv.config();
 
-// import dotenv from "dotenv";
+// COMMENT: added ti see if it will work
+// import { fileURLToPath } from "url";
+// import { dirname } from "path";
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -48,7 +49,8 @@ app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 
 app.use(router);
 

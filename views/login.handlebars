@@ -1,14 +1,14 @@
 <div>
      <h2>Login</h2>
-
+     <h3 id="logInErr" style="display: none;"></h3>
      <form id="formLogIn">
           <div class="formGroup">
                <label for="emailLogin">email:</label>
-               <input class="form-input" type="text" id="emailLogin" />
+               <input class="form-input" type="text" id="emailLogin" autocomplete="email" />
           </div>
           <div class="formGroup">
                <label for="passwordLogin">password:</label>
-               <input class="form-input" type="password" id="passwordLogin" />
+               <input class="form-input" type="password" id="passwordLogin" autocomplete="current-password" />
           </div>
           <div class="formGroup">
                <button class="btn btn-primary" type="submit">login</button>

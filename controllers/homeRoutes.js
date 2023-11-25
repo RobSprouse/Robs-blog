@@ -26,6 +26,18 @@ router.get("/", async (req, res) => {
      }
 });
 
+router.get("/dashboard", async (req, res) => {
+     try {
+          if (!req.session.loggedIn) {
+               res.redirect("/login");
+               return;
+          }
+          // TODO: finish the code for this route, and maybe move 
+     } catch (err) {
+          res.status(500).json(err);
+     }
+});
+
 router.get("/login", (req, res) => {
      if (req.session.loggedIn) {
           res.redirect("/");

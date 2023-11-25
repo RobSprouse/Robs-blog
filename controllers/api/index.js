@@ -1,10 +1,10 @@
 import express from "express";
 import userRoutes from "./userRoutes.js";
-// import { dashboardRoutes } from "./dashboardRoutes.js";
+import dashboardRoutes from "./dashboardRoutes.js";
 
-const router = express.Router({mergeParams: true});
+const router = express.Router();
 
 router.use("/users", userRoutes);
-// router.use("/dashboard", dashboardRoutes);
+router.use("/dashboard", dashboardRoutes);
 
 export default router;
