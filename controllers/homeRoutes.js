@@ -4,7 +4,7 @@ import withAuth from "../utils/auth.js";
 
 const router = express.Router();
 
-router.get("/", async (_, res) => {
+router.get("/", async (req, res) => {
      try {
           const blogData = await Blog.findAll({
                include: [
@@ -19,6 +19,7 @@ router.get("/", async (_, res) => {
 
           res.render("homepage", {
                blogs,
+               loggedIn: req.session.loggedIn, // Add this line
           });
      } catch (err) {
           res.status(500).json(err);
@@ -31,7 +32,9 @@ router.get("/login", (req, res) => {
           return;
      }
 
-     res.render("login");
+     res.render("login", {
+          loggedIn: req.session.loggedIn, // Add this line
+     });
 });
 
 router.get("/signup", (req, res) => {
@@ -40,7 +43,9 @@ router.get("/signup", (req, res) => {
           return;
      }
 
-     res.render("signup");
+     res.render("signup", {
+          loggedIn: req.session.loggedIn, // Add this line
+     });
 });
 
-export { router as homeRoutes };
+export default router;

@@ -6,6 +6,13 @@ import router from "./controllers/index.js";
 import formateDate from "./utils/helpers.js";
 import sequelize from "./config/connection.js";
 import connectSessionSequelize from "connect-session-sequelize";
+// COMMENT: added ti see if it will work
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// import dotenv from "dotenv";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -18,9 +25,9 @@ const sess = {
      secret: process.env.SESSION_SECRET,
      cookie: {
           maxAge: 600000,
-          httpOnly: true,
-          secure: true,
-          sameSite: "strict",
+          httpOnly: false,
+          secure: false, // Set to false in development
+          sameSite: "lax", // Set to lax or none in development
      },
      resave: false,
      saveUninitialized: true,
@@ -30,6 +37,10 @@ const sess = {
 };
 
 app.use(session(sess));
+app.use((req, res, next) => {
+     res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+     next();
+});
 
 // Inform Express.js on which template engine to use
 app.engine("handlebars", hbs.engine);
@@ -37,7 +48,7 @@ app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join("public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(router);
 
