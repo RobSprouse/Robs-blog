@@ -1,34 +1,47 @@
 const signupFormHandler = async (event) => {
      event.preventDefault();
 
-     const userName = document.querySelector("#nameSignUp").value.trim();
-     const email = document.querySelector("#emailSignUp").value.trim();
-     const password = document.querySelector("#passwordSignUp").value.trim();
+     try {
+          const username = document.querySelector("#username").value.trim();
 
-     if (!userName || !email || !password) {
-          logInErr.style.display = "block";
-          logInErr.textContent = "Please enter a valid name, email and password.";
-          return;
-     }
+          const email = document.querySelector("#emailSignUp").value.trim();
 
-     if (userName && email && password) {
-          logInErr.style.display = "none";
-          const response = await fetch("/api/users/", {
-               method: "POST",
-               body: JSON.stringify({ userName, password, email }),
-               headers: { "Content-Type": "application/json" },
-          });
-          console.log(response.body);
-          console.log(response);
+          const password = document.querySelector("#passwordSignUp").value.trim();
 
-          if (!response.ok) {
-               const responseBody = await response.json();
+          const logInErr = document.querySelector("#logInErr");
+
+          if (!username || !email || !password) {
                logInErr.style.display = "block";
-               logInErr.textContent = responseBody.message;
+               logInErr.textContent = "Please enter a valid name, email and password.";
                return;
           }
 
-          document.location.replace(document.referrer || "/");
+          if (username && email && password) {
+               logInErr.style.display = "none";
+               const response = await fetch("/api/users/", {
+                    method: "POST",
+                    body: JSON.stringify({ username, password, email }),
+                    headers: { "Content-Type": "application/json" },
+               });
+               console.log(response.body);
+               console.log(response);
+
+               if (!response.ok) {
+                    const responseBody = await response.json();
+                    logInErr.style.display = "block";
+                    logInErr.textContent = responseBody.message;
+                    return;
+               }
+
+               document.location.replace(document.referrer || "/");
+          }
+     } catch (err) {
+          console.log(err);
      }
 };
-document.querySelector("#formSignUp").addEventListener("submit", signupFormHandler);
+
+document.addEventListener("DOMContentLoaded", () => {
+     document.querySelector("#formSignUp").addEventListener("submit", signupFormHandler);
+});
+
+// document.querySelector("#formSignUp").addEventListener("submit", signupFormHandler);
