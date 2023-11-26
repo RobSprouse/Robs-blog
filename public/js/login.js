@@ -21,9 +21,9 @@ const loginFormHandler = async (event) => {
           });
 
           if (!response.ok) {
+               const responseBody = await response.json();
                logInErr.style.display = "block";
-               const responseBody = await response.json(); // Parse the JSON response body
-               logInErr.textContent = responseBody.message; // Access the message property of the response body
+               logInErr.textContent = responseBody.message;
                return;
           }
 

@@ -1,4 +1,3 @@
-// import path from "path";
 import express from "express";
 import session from "express-session";
 import exphbs from "express-handlebars";
@@ -8,12 +7,6 @@ import sequelize from "./config/connection.js";
 import connectSessionSequelize from "connect-session-sequelize";
 import dotenv from "dotenv";
 dotenv.config();
-
-// COMMENT: added ti see if it will work
-// import { fileURLToPath } from "url";
-// import { dirname } from "path";
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -49,16 +42,14 @@ app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static("public"));
-
 app.use(router);
 
-sequelize
-     .sync({ force: false })
-     .then(() => {
+(async () => {
+     try {
+          await sequelize.sync({ force: false });
           app.listen(PORT, () => console.log("Now listening"));
-     })
-     .catch((error) => {
+     } catch (error) {
           console.error("Failed to start server: ", error);
-     });
+     }
+})();

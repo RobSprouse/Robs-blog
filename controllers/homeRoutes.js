@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 
           res.render("homepage", {
                blogs,
-               loggedIn: req.session.loggedIn, // Add this line
+               loggedIn: req.session.loggedIn,
           });
      } catch (err) {
           res.status(500).json(err);
@@ -45,7 +45,7 @@ router.get("/login", (req, res) => {
      }
 
      res.render("login", {
-          loggedIn: req.session.loggedIn, // Add this line
+          loggedIn: req.session.loggedIn,
      });
 });
 
@@ -56,7 +56,7 @@ router.get("/signup", (req, res) => {
      }
 
      res.render("signup", {
-          loggedIn: req.session.loggedIn, // Add this line
+          loggedIn: req.session.loggedIn,
      });
 });
 
