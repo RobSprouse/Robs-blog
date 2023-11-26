@@ -1,22 +1,34 @@
 const signupFormHandler = async (event) => {
      event.preventDefault();
 
-     const userName = document.querySelector("#nameSignup").value.trim();
-     const email = document.querySelector("#emailSignup").value.trim();
-     const password = document.querySelector("#passwordSignup").value.trim();
+     const userName = document.querySelector("#nameSignUp").value.trim();
+     const email = document.querySelector("#emailSignUp").value.trim();
+     const password = document.querySelector("#passwordSignUp").value.trim();
+
+     if (!userName || !email || !password) {
+          logInErr.style.display = "block";
+          logInErr.textContent = "Please enter a valid name, email and password.";
+          return;
+     }
 
      if (userName && email && password) {
-          const response = await fetch("/api/users", {
+          logInErr.style.display = "none";
+          const response = await fetch("/api/users/", {
                method: "POST",
-               body: JSON.stringify({ userName, email, password }),
+               body: JSON.stringify({ userName, password, email }),
                headers: { "Content-Type": "application/json" },
           });
-          if (response.ok) {
-               console.log("User created");
-               document.location.replace(document.referrer || "/");
-          } else {
-               console.log("User not created");
-               alert(response.statusText);
+          console.log(response.body);
+          console.log(response);
+
+          if (!response.ok) {
+               const responseBody = await response.json();
+               logInErr.style.display = "block";
+               logInErr.textContent = responseBody.message;
+               return;
           }
+
+          document.location.replace(document.referrer || "/");
      }
 };
+document.querySelector("#formSignUp").addEventListener("submit", signupFormHandler);

@@ -6,7 +6,6 @@ const loginFormHandler = async (event) => {
      const logInErr = document.querySelector("#logInErr");
 
      if (!email || !password) {
-          console.log("Please enter a valid email and password.");
           logInErr.style.display = "block";
           logInErr.textContent = "Please enter a valid email and password.";
           return;
