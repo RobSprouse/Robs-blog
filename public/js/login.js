@@ -27,6 +27,7 @@ const loginFormHandler = async (event) => {
           }
 
           document.location.replace(document.referrer || "/");
+          window.location.reload();
      }
 };
 

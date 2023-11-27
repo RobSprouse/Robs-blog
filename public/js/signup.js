@@ -23,8 +23,6 @@ const signupFormHandler = async (event) => {
                     body: JSON.stringify({ username, password, email }),
                     headers: { "Content-Type": "application/json" },
                });
-               console.log(response.body);
-               console.log(response);
 
                if (!response.ok) {
                     const responseBody = await response.json();
@@ -33,15 +31,12 @@ const signupFormHandler = async (event) => {
                     return;
                }
 
-               document.location.replace(document.referrer || "/");
+               document.location.replace("/");
+               window.location.reload();
           }
      } catch (err) {
           console.log(err);
      }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-     document.querySelector("#formSignUp").addEventListener("submit", signupFormHandler);
-});
-
-// document.querySelector("#formSignUp").addEventListener("submit", signupFormHandler);
+document.querySelector("#formSignUp").addEventListener("submit", signupFormHandler);
