@@ -1,0 +1,13 @@
+<div class="blog-post">
+     <h2 class="blog-title" id="{{blog.id}}">{{blog.title}}</h2>
+     <p class="blog-content">{{blog.content}}</p>
+     <p class="blog-author">Posted by: {{blog.user.username}}</p>
+     <p class="blog-date">Date: {{blog.date_created}}</p>
+     {{#each blog.comments}}
+          <div class="comment">
+               <p class="comment-content">{{this.comment_text}}</p>
+               <p class="comment-author">Comment by: {{this.user.username}}</p>
+               <p class="comment-date">Date: {{this.date_created}}</p>
+          </div>
+     {{/each}}
+</div>

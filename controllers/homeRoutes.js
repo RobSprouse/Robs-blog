@@ -26,10 +26,9 @@ router.get("/", async (req, res) => {
      }
 });
 
-// TODO: get blog by by user id and display on dashboard
 router.get("/dashboard", withAuth, async (req, res) => {
      try {
-          const blogByUser = await Blog.findAll({
+          const blogData = await Blog.findAll({
                where: {
                     user_id: req.session.user_id,
                },
@@ -41,7 +40,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
                ],
           });
 
-          const blogs = blogByUser.map((blog) => blog.get({ plain: true }));
+          const blogs = blogData.map((blog) => blog.get({ plain: true }));
 
           res.render("dashboard", {
                blogs,
@@ -50,6 +49,12 @@ router.get("/dashboard", withAuth, async (req, res) => {
      } catch (err) {
           res.status(500).json(err);
      }
+});
+
+router.get("/newblog", withAuth, (req, res) => {
+     res.render("newBlog", {
+          loggedIn: req.session.loggedIn,
+     });
 });
 
 router.get("/login", (req, res) => {
@@ -63,23 +68,44 @@ router.get("/login", (req, res) => {
      });
 });
 
-router.get("/signup", withAuth, (req, res) => {
+router.get("/:id", async (req, res) => {
+     try {
+          const blogData = await Blog.findByPk(req.params.id, {
+               include: [
+                    {
+                         model: User,
+                         attributes: ["username"],
+                    },
+                    {
+                         model: Comment,
+                         attributes: ["id", "comment_text", "date_created", "user_id"],
+                         include: {
+                              model: User,
+                              attributes: ["username"],
+                         },
+                    },
+               ],
+          });
+
+          const blog = blogData.get({ plain: true });
+          console.log(blog);
+          res.render("blog", {
+               blog,
+               loggedIn: req.session.loggedIn,
+          });
+     } catch (err) {
+          res.status(500).json(err);
+     }
+});
+
+router.get("/signup", (req, res) => {
+     if (req.session.loggedIn) {
+          res.redirect("/");
+          return;
+     }
      res.render("signup", {
           loggedIn: req.session.loggedIn,
      });
 });
-
-// TODO: find existing users by username and email to compare in front end
-
-// router.get("/users", async (req, res) => {
-//      try {
-//           const userData = await User.findAll({
-//                attributes: { exclude: ["password"] },
-//           });
-//           res.status(200).json(userData);
-//      } catch (err) {
-//           res.status(500).json(err);
-//      }
-// });
 
 export default router;

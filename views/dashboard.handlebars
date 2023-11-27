@@ -1,7 +1,12 @@
+<h1>Dashboard</h1>
+<h2>Logged in as: {{user.username}}</h2>
+<h3>My Blogs</h3>
+<a href="/newBlog">Create a New Blog</a>
 {{#each blogs}}
-     <div class="blog-post">
-          <h2 class="blog-title">{{this.title}}</h2>
-          <p class="blog-content">{{this.content}}</p>
-          <p class="blog-date">Date: {{this.date_created}}</p>
+     <div class="blog">
+          <h2>{{this.title}}</h2>
+          <p>{{this.content}}</p>
+          <p>Posted by: {{this.user.username}}</p>
+          <p>Date: {{this.date_created}}</p>
      </div>
 {{/each}}

@@ -17,14 +17,13 @@ router.post("/", async (req, res) => {
                res.status(200).json(newUser);
           });
      } catch (err) {
-          if (err.name === 'SequelizeUniqueConstraintError') {
-               res.status(400).json({ message: 'Username or email already exists.' });
+          if (err.name === "SequelizeUniqueConstraintError") {
+               res.status(400).json({ message: "Username or email already exists." });
           } else {
                res.status(500).json(err);
           }
      }
 });
-
 
 router.post("/login", async (req, res) => {
      try {
@@ -62,16 +61,5 @@ router.post("/logout", (req, res) => {
           res.status(404).end();
      }
 });
-
-// TODO: get all users route
-
-// router.get("/", async (req, res) => {
-//      try {
-//           const userData = await User.findAll();
-//           res.status(200).json(userData);
-//      } catch (err) {
-//           res.status(500).json(err);
-//      }
-// });
 
 export default router;
