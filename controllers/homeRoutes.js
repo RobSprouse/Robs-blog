@@ -4,6 +4,18 @@ import withAuth from "../utils/auth.js";
 
 const router = express.Router();
 
+router.get("/signup", async (req, res) => {
+     try {
+          if (req.session.loggedIn) {
+               res.redirect("/");
+               return;
+          }
+          res.render("signup");
+     } catch (err) {
+          res.status(500).json(err);
+     }
+});
+
 router.get("/", async (req, res) => {
      try {
           const blogData = await Blog.findAll({
@@ -96,17 +108,6 @@ router.get("/:id", async (req, res) => {
      } catch (err) {
           res.status(500).json(err);
      }
-});
-
-
-router.get("/signup", (req, res) => {
-     if (req.session.loggedIn) {
-          res.redirect("/");
-          return;
-     }
-     res.render("signup", {
-          loggedIn: req.session.loggedIn,
-     });
 });
 
 export default router;
