@@ -80,7 +80,7 @@ router.get("/login", (req, res) => {
      });
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/blogs/:id", async (req, res) => {
      try {
           const blogData = await Blog.findByPk(req.params.id, {
                include: [
@@ -108,6 +108,12 @@ router.get("/:id", async (req, res) => {
      } catch (err) {
           res.status(500).json(err);
      }
+});
+
+router.get("*", (req, res) => {
+     res.render("homepage", {
+          loggedIn: req.session.loggedIn,
+     });
 });
 
 export default router;

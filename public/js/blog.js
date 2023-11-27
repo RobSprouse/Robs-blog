@@ -4,7 +4,7 @@ const viewBlog = async (event) => {
      event.preventDefault();
      const blogId = event.target.getAttribute("id");
      console.log(blogId);
-     document.location.replace(`/${blogId}`);
+     document.location.replace(`/blogs/${blogId}`);
 };
 
 document.querySelectorAll(".blog-title").forEach((blog) => {
