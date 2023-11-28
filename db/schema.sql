@@ -26,3 +26,5 @@ FROM
      LEFT JOIN user AS comment_user ON comment.user_id = comment_user.id
 ORDER BY
      blog.id;
+
+     SHOW INDEX FROM user;

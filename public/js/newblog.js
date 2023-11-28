@@ -17,6 +17,8 @@ const newBlogHandler = async (event) => {
                alert("Failed to create blog");
           }
      }
+     
+     document.location.replace("/dashboard");
 };
 
 document.querySelector("#newBlogForm").addEventListener("submit", newBlogHandler);

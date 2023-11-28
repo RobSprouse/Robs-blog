@@ -1,4 +1,6 @@
-const formateDate = (date) => {
+const formatDate = () => {
+     const date = new Date();
      return date.toLocaleDateString();
-};
-export default formateDate;
+ };
+ 
+export default formatDate;

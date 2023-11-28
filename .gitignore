@@ -134,3 +134,4 @@ dist
 
 # Workspace specific files
 .code-workspace
+nodemon.json
