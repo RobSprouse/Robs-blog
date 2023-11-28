@@ -17,7 +17,6 @@ router.post("/", withAuth, async (req, res) => {
           await newBlog.save();
 
           req.session.save(() => {
-               req.session.user_id = newBlog.id;
                req.session.loggedIn = true;
                res.status(200).json(newBlog);
           });
