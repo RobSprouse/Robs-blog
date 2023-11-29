@@ -12,8 +12,26 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const SequelizeStore = connectSessionSequelize(session.Store);
 
+function isEqual(a, b, options) {
+     if (a === b) {
+          return options.fn(this);
+     } else {
+          return options.inverse(this);
+     }
+}
+
 // Set up Handlebars.js engine with custom helpers
-const hbs = exphbs.create({ helpers: { formateDate } });
+const hbs = exphbs.create({
+     helpers: {
+          formateDate,
+          isEqual,
+          section: function (name, options) {
+               if (!this._sections) this._sections = {};
+               this._sections[name] = options.fn(this);
+               return null;
+          },
+     },
+});
 
 const sess = {
      secret: process.env.SESSION_SECRET,

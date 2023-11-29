@@ -1,6 +1,7 @@
 import express from "express";
 import { Blog, User, Comment } from "../models/index.js";
 import withAuth from "../utils/auth.js";
+import formateDate from "../utils/helpers.js";
 
 const router = express.Router();
 
@@ -23,7 +24,6 @@ router.get("/", async (req, res) => {
                     {
                          model: User,
                          attributes: ["username"],
-                         
                     },
                ],
           });
@@ -101,20 +101,15 @@ router.get("/blogs/:id", async (req, res) => {
           });
 
           const blog = blogData.get({ plain: true });
-          console.log(blog);
           res.render("blog", {
                blog,
                loggedIn: req.session.loggedIn,
+               loggedInUser_id: req.session.user_id,
           });
+          console.log(blog);
      } catch (err) {
           res.status(500).json(err);
      }
-});
-
-router.get("*", (req, res) => {
-     res.render("homepage", {
-          loggedIn: req.session.loggedIn,
-     });
 });
 
 export default router;

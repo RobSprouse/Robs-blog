@@ -1,12 +1,15 @@
-// TODO: add event listener to get the blog post id from clicking on the blogs title and the fetch request to get the blog post which handles the rendering of the blog post page
+// TODO: function to grab blog id from blog button click and redirect to /dashboard
+async function deleteBlog(event) {
+     const blogId = event.target.getAttribute("data-id");
+     await fetch(`/blogs/${blogId}`, {
+          method: "DELETE",
+          headers: {
+               "Content-Type": "application/json",
+          },
+     });
+     document.location.replace("/dashboard");
+}
 
-const viewBlog = async (event) => {
-     event.preventDefault();
-     const blogId = event.target.getAttribute("id");
-     console.log(blogId);
-     document.location.replace(`/blogs/${blogId}`);
-};
-
-document.querySelectorAll(".blog-title").forEach((blog) => {
-     blog.addEventListener("click", viewBlog);
+document.querySelectorAll("#delete-blog").forEach((blog) => {
+     blog.addEventListener("click", deleteBlog);
 });

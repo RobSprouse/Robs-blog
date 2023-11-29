@@ -3,6 +3,14 @@
      <p class="blog-content">{{blog.content}}</p>
      <p class="blog-author">Posted by: {{blog.user.username}}</p>
      <p class="blog-date">Date: {{blog.date_created}}</p>
+     <p>logged in user:{{loggedInUser_id}}</p>
+     <p>blog user:{{blog.user_id}}</p>
+     <p>blog.id: {{blog.id}}</p>
+     {{#isEqual blog.user_id loggedInUser_id}}
+          <button class="btn btn-primary" id="edit-blog" data-id="{{blog.id}}">Edit</button>
+          <button class="btn btn-danger" id="delete-blog" data-id="{{blog.id}}">Delete</button>
+     {{/isEqual}}
+
      {{#each blog.comments}}
           <div class="comment">
                <p class="comment-content">{{this.comment_text}}</p>
