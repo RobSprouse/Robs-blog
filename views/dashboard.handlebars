@@ -7,5 +7,11 @@
           <p>{{this.content}}</p>
           <p>Posted by: {{this.user.username}}</p>
           <p>Date: {{this.date_created}}</p>
+          {{#isEqual blog.user_id loggedInUser_id}}
+               <button class="btn btn-primary" id="edit-blog" data-id="{{this.id}}">Edit</button>
+               <button class="btn btn-danger" id="delete-blog" data-id="{{this.id}}">Delete</button>
+          {{/isEqual}}
+
      </div>
 {{/each}}
+<script src="/js/blog.js"></script>

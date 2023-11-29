@@ -5,7 +5,6 @@ import formateDate from "../../utils/helpers.js";
 
 const router = Express.Router();
 
-// TODO: route to delete a blog post
 router.delete("/:id", withAuth, async (req, res) => {
      try {
           const blogData = await Blog.destroy({
