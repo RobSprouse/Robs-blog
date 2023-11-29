@@ -112,4 +112,10 @@ router.get("/blogs/:id", async (req, res) => {
      }
 });
 
+router.get("*", (req, res) => {
+     res.render("homepage", {
+          loggedIn: req.session.loggedIn,
+     });
+});
+
 export default router;
