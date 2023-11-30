@@ -1,7 +1,7 @@
 import express from "express";
 import { Blog, User, Comment } from "../models/index.js";
 import withAuth from "../utils/auth.js";
-import formateDate from "../utils/helpers.js";
+import { formatDate, isEqual } from "../utils/helpers.js";
 
 const router = express.Router();
 
@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
           res.render("homepage", {
                blogs,
                loggedIn: req.session.loggedIn,
-               formateDate,
+               formatDate,
           });
      } catch (err) {
           res.status(500).json(err);
@@ -142,7 +142,7 @@ router.post("/addComment/:id", withAuth, async (req, res) => {
           newComment.comment_text = req.body.comment_text;
           newComment.user_id = req.session.user_id;
           newComment.blog_id = req.params.id;
-          newComment.date_created = formateDate(new Date());
+          newComment.date_created = formatDate(new Date());
           await newComment.save();
 
           res.status(200).json(newComment);

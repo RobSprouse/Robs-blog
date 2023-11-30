@@ -2,34 +2,24 @@ import express from "express";
 import session from "express-session";
 import exphbs from "express-handlebars";
 import router from "./controllers/index.js";
-import formateDate from "./utils/helpers.js";
 import sequelize from "./config/connection.js";
 import connectSessionSequelize from "connect-session-sequelize";
 import dotenv from "dotenv";
+import { formatDate, isEqual } from "./utils/helpers.js";
+import section from "./utils/helpers.js";
+
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 const SequelizeStore = connectSessionSequelize(session.Store);
 
-function isEqual(a, b, options) {
-     if (a === b) {
-          return options.fn(this);
-     } else {
-          return options.inverse(this);
-     }
-}
-
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({
      helpers: {
-          formateDate,
+          formatDate,
           isEqual,
-          section: function (name, options) {
-               if (!this._sections) this._sections = {};
-               this._sections[name] = options.fn(this);
-               return null;
-          },
+          section,
      },
 });
 
