@@ -9,13 +9,10 @@ async function deleteBlog(event) {
      document.location.replace("/dashboard");
 }
 
-// TODO: create a function to handle the clicking of the edit button to render the edit blog page
-
 async function editBlog(event) {
      const blogId = event.target.getAttribute("data-id");
      document.location.replace(`/blogs/edit/${blogId}`);
 }
-
 
 const viewBlog = async (event) => {
      event.preventDefault();
@@ -23,6 +20,15 @@ const viewBlog = async (event) => {
      document.location.replace(`/blogs/${blogId}`);
 };
 
+// TODO: create a function to handle a new comment button click to render the new comment page
+
+const newComment = async (event) => {
+     event.preventDefault();
+     const blogId = event.target.getAttribute("data-id");
+     document.location.replace(`/blogs/${blogId}/comment`);
+};
+
+document.querySelector("#add-comment").addEventListener("click", newComment);
 
 document.querySelectorAll(".blog-title").forEach((blog) => {
      blog.addEventListener("click", viewBlog);

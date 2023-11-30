@@ -112,8 +112,7 @@ router.get("/blogs/:id", async (req, res) => {
           res.status(500).json(err);
      }
 });
-// TODO: make sure this route is working
-// FIXME:  see if this works
+
 router.get("/blogs/edit/:id", withAuth, async (req, res) => {
      try {
           const blogData = await Blog.findByPk(req.params.id, {
@@ -127,6 +126,46 @@ router.get("/blogs/edit/:id", withAuth, async (req, res) => {
 
           const blog = blogData.get({ plain: true });
           res.render("editBlog", {
+               blog,
+               loggedIn: req.session.loggedIn,
+          });
+     } catch (err) {
+          res.status(500).json(err);
+     }
+});
+
+// TODO: add a route to add a new comment to a blog post
+
+router.post("/addComment/:id", withAuth, async (req, res) => {
+     try {
+          const newComment = new Comment();
+          newComment.comment_text = req.body.comment_text;
+          newComment.user_id = req.session.user_id;
+          newComment.blog_id = req.params.id;
+          newComment.date_created = formateDate(new Date());
+          await newComment.save();
+
+          res.status(200).json(newComment);
+     } catch (err) {
+          res.status(400).json(err);
+     }
+});
+
+// TODO: add a route to render the new comment page
+
+router.get("/blogs/:id/comment", withAuth, async (req, res) => {
+     try {
+          const blogData = await Blog.findByPk(req.params.id, {
+               include: [
+                    {
+                         model: User,
+                         attributes: ["username"],
+                    },
+               ],
+          });
+
+          const blog = blogData.get({ plain: true });
+          res.render("newComment", {
                blog,
                loggedIn: req.session.loggedIn,
           });

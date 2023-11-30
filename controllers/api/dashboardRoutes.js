@@ -3,7 +3,6 @@ import { Blog } from "../../models/index.js";
 import withAuth from "../../utils/auth.js";
 import formateDate from "../../utils/helpers.js";
 
-
 const router = express.Router();
 
 router.post("/", withAuth, async (req, res) => {
@@ -15,10 +14,7 @@ router.post("/", withAuth, async (req, res) => {
           newBlog.date_created = formateDate(new Date());
           await newBlog.save();
 
-          req.session.save(() => {
-               req.session.loggedIn = true;
-               res.status(200).json(newBlog);
-          });
+          res.status(200).json(newBlog);
      } catch (err) {
           res.status(500).json(err);
      }

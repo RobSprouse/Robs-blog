@@ -24,8 +24,7 @@ router.delete("/:id", withAuth, async (req, res) => {
           res.status(500).json(err);
      }
 });
-// FIXME: see if this works
-// TODO: create a route to update a blog's title and content
+
 router.put("/:id", withAuth, async (req, res) => {
      try {
           const blogData = await Blog.update(
@@ -51,6 +50,5 @@ router.put("/:id", withAuth, async (req, res) => {
           res.status(500).json(err);
      }
 });
-
 
 export default router;
