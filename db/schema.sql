@@ -28,3 +28,5 @@ ORDER BY
      blog.id;
 
      SHOW INDEX FROM user;
+
+     
