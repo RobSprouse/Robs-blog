@@ -1,13 +1,11 @@
-<!-- TODO: make this edit the current blog -->
-<div>
+<div class="column">
      <h1>Edit Blog</h1>
-     <form id="editBlogForm">
-          <label for="title">Title</label>
-          <input type="text" id="title" name="title" data-id="{{blog.id}}" placeholder="{{blog.title}}" />
-          <label for="content">Content</label>
-          <textarea id="content" name="content" placeholder="{{blog.content}}"></textarea>
-          <input type="submit" value="Submit Changes" />
+     <form id="editBlogForm" class="blog-post-edit">
+          <label class="editLabels" for="title">Title</label>
+          <input type="text" id="title" name="title" data-id="{{blog.id}}" value="{{blog.title}}" />
+          <label class="editLabels" for="content">Content</label>
+          <textarea id="content" name="content">{{blog.content}}</textarea>
+          <input class="btn btn-primary" type="submit" value="Submit Changes" />
      </form>
-
 </div>
 <script src="/js/editBlog.js"></script>

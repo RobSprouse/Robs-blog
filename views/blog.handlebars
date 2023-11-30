@@ -1,21 +1,28 @@
 <div class="blog-post">
      <h2 class="blog-title" data-id="{{blog.id}}">{{blog.title}}</h2>
      <p class="blog-content">{{blog.content}}</p>
-     <p class="blog-author">Posted by: {{blog.user.username}}</p>
-     <p class="blog-date">Date: {{blog.date_created}}</p>
-     {{#if loggedIn}}
-          <button class="btn btn-primary" id="add-comment" data-id="{{blog.id}}">Add Comment</button>
-     {{/if}}
+     <div class="createdInfo">
+          <p class="blog-author">Posted by: {{blog.user.username}}</p>
+          <p class="blog-date">Date: {{blog.date_created}}</p>
+     </div>
      {{#isEqual blog.user_id loggedInUser_id}}
-          <button class="btn btn-primary" id="edit-blog" data-id="{{blog.id}}">Edit</button>
-          <button class="btn btn-danger" id="delete-blog" data-id="{{blog.id}}">Delete</button>
+          <div class="btn-div">
+               <button class="btn btn-primary" id="edit-blog" data-id="{{blog.id}}">Edit</button>
+               <button class="btn btn-danger" id="delete-blog" data-id="{{blog.id}}">Delete</button>
+          </div>
      {{/isEqual}}
-
+     {{#if loggedIn}}
+          <div class="btn-div">
+               <button class="btn btn-primary" id="add-comment" data-id="{{blog.id}}">Add Comment</button>
+          </div>
+     {{/if}}
      {{#each blog.comments}}
           <div class="comment">
                <p class="comment-content">{{this.comment_text}}</p>
-               <p class="comment-author">Comment by: {{this.user.username}}</p>
-               <p class="comment-date">Date: {{this.date_created}}</p>
+               <div class="createdInfo">
+                    <p class="comment-author">Comment by: {{this.user.username}}</p>
+                    <p class="comment-date">Date: {{this.date_created}}</p>
+               </div>
           </div>
      {{/each}}
 </div>

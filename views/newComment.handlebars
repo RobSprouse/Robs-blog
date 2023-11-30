@@ -1,3 +1,5 @@
+
+
 <div class="newComment">
      <h2 class="blog-title" data-id="{{blog.id}}">{{blog.title}}</h2>
      <p class="blog-content">{{blog.content}}</p>
@@ -5,10 +7,10 @@
      <p class="blog-date">Date: {{blog.date_created}}</p>
 
      <h3>Add a Comment</h3>
-     <form id="add-comment-form">
+     <form id="add-comment-form" class="blog-post-edit">
           <div class="form-group">
-               <label for="comment-text">Comment:</label>
-               <textarea class="form-control" rows="5" id="comment-text"></textarea>
+               <label class="blog-content" for="comment-text">Comment:</label>
+               <textarea class="form-control comment-content" rows="5" id="comment-text"></textarea>
           </div>
           <button type="submit" class="btn btn-primary" id="add-comment" data-id="{{blog.id}}">Submit</button>
      </form>
