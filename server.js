@@ -27,9 +27,9 @@ const sess = {
      secret: process.env.SESSION_SECRET,
      cookie: {
           maxAge: 600000,
-          httpOnly: true,
-          secure: true,
-          sameSite: "lax",
+          httpOnly: false,
+          secure: false, // Set to false in development
+          sameSite: "lax", // Set to lax or none in development
      },
      resave: false,
      saveUninitialized: true,
