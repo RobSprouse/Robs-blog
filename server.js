@@ -1,49 +1,73 @@
-/* TODO: ES6 syntax from mini project, review and confirm
-      import path from "path";
-      import express from "express";
-      import session from "express-session";
-      import exphbs from "express-handlebars";
-      import routes from "./controllers";
-      import helpers from "./utils/helpers";
-      import sequelize from "./config/connection";
-      import connectSessionSequelize from "connect-session-sequelize";
-      
-      const app = express();
-      const PORT = process.env.PORT || 3001;
-      const SequelizeStore = connectSessionSequelize(session.Store);
-      
-      
-      
-      // Set up Handlebars.js engine with custom helpers
-      const hbs = exphbs.create({ helpers });
-      
-      const sess = {
-           secret: "Super secret secret",
-           cookie: {
-                maxAge: 300000,
-                httpOnly: true,
-                secure: false,
-                sameSite: "strict",
-           },
-           resave: false,
-           saveUninitialized: true,
-           store: new SequelizeStore({
-                db: sequelize,
-           }),
-      };
-      
-      app.use(session(sess));
-      
-      // Inform Express.js on which template engine to use
-      app.engine("handlebars", hbs.engine);
-      app.set("view engine", "handlebars");
-      
-      app.use(express.json());
-      app.use(express.urlencoded({ extended: true }));
-      app.use(express.static(path.join(__dirname, "public")));
-      
-      app.use(routes);
-      
-      sequelize.sync({ force: false }).then(() => {
-           app.listen(PORT, () => console.log("Now listening"));
-      }); */
+import express from "express";
+import session from "express-session";
+import exphbs from "express-handlebars";
+import router from "./controllers/index.js";
+import formateDate from "./utils/helpers.js";
+import sequelize from "./config/connection.js";
+import connectSessionSequelize from "connect-session-sequelize";
+import dotenv from "dotenv";
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+const SequelizeStore = connectSessionSequelize(session.Store);
+
+function isEqual(a, b, options) {
+     if (a === b) {
+          return options.fn(this);
+     } else {
+          return options.inverse(this);
+     }
+}
+
+// Set up Handlebars.js engine with custom helpers
+const hbs = exphbs.create({
+     helpers: {
+          formateDate,
+          isEqual,
+          section: function (name, options) {
+               if (!this._sections) this._sections = {};
+               this._sections[name] = options.fn(this);
+               return null;
+          },
+     },
+});
+
+const sess = {
+     secret: process.env.SESSION_SECRET,
+     cookie: {
+          maxAge: 600000,
+          httpOnly: false,
+          secure: false, // Set to false in development
+          sameSite: "lax", // Set to lax or none in development
+     },
+     resave: false,
+     saveUninitialized: true,
+     store: new SequelizeStore({
+          db: sequelize,
+     }),
+};
+
+app.use(session(sess));
+app.use((req, res, next) => {
+     res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+     next();
+});
+
+// Inform Express.js on which template engine to use
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.use(router);
+
+(async () => {
+     try {
+          await sequelize.sync({ force: false });
+          app.listen(PORT, () => console.log("Now listening"));
+     } catch (error) {
+          console.error("Failed to start server: ", error);
+     }
+})();

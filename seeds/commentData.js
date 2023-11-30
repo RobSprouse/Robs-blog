@@ -59,6 +59,12 @@ const commentData = [
           userId: 5,
           blogId: 5,
      },
+     {
+          comment_text: "This is a comment for Blog Post 6 by User u.",
+          date_created: "2023-12-03T23:00:30.000Z",
+          userId: 6,
+          blogId: 6,
+     }
 ];
 
 export default commentData;

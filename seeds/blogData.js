@@ -29,6 +29,12 @@ const blogData = [
           date_created: "2023-11-23T21:06:47.000Z",
           userId: 5,
      },
+     {
+          title: "Blog Post 6",
+          content: "This is the content for Blog Post 6 by user 6.",
+          date_created: "2023-11-23T21:06:47.000Z",
+          userId: 6,
+     },
 ];
 
 export default blogData;
