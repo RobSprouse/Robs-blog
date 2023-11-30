@@ -28,7 +28,10 @@ const newComment = async (event) => {
      document.location.replace(`/blogs/${blogId}/comment`);
 };
 
-document.querySelector("#add-comment").addEventListener("click", newComment);
+const commentButton = document.querySelector("#add-comment");
+if (commentButton) {
+     commentButton.addEventListener("click", newComment);
+}
 
 document.querySelectorAll(".blog-title").forEach((blog) => {
      blog.addEventListener("click", viewBlog);
