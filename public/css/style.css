@@ -87,7 +87,7 @@ main {
      color: #060cff;
      flex: 1 1 100%;
      text-align: center;
-     max-width: ;
+     margin: 0.5em;
 }
 
 .blog-content {
@@ -184,6 +184,11 @@ main {
 .editLabels {
      margin: 1em;
      text-decoration: underline;
+}
+
+.newComment {
+     justify-items: center;
+     align-items: center;
 }
 
 @media screen and (max-width: 750px) {

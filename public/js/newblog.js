@@ -21,4 +21,4 @@ const newBlogHandler = async (event) => {
      document.location.replace("/dashboard");
 };
 
-document.querySelector("#newBlogForm").addEventListener("submit", newBlogHandler);
+document.querySelector("#editBlogForm").addEventListener("submit", newBlogHandler);

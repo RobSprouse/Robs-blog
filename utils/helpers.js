@@ -3,6 +3,7 @@ const formatDate = () => {
      return date.toLocaleDateString();
 };
 
+// COMMENT: This is a helper function for handlebars to compare two values, used Bing AI to find this
 function isEqual(a, b, options) {
      if (a === b) {
           return options.fn(this);
@@ -11,6 +12,7 @@ function isEqual(a, b, options) {
      }
 }
 
+// COMMENT: This is a helper function for handlebars to create sections, used Bing AI to find this
 function section(name, options) {
      if (!this._sections) this._sections = {};
      this._sections[name] = options.fn(this);
