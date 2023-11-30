@@ -33,6 +33,7 @@ router.get("/", async (req, res) => {
           res.render("homepage", {
                blogs,
                loggedIn: req.session.loggedIn,
+               formateDate,
           });
      } catch (err) {
           res.status(500).json(err);

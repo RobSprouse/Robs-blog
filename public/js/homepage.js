@@ -1,6 +1,6 @@
 const viewBlog = async (event) => {
      event.preventDefault();
-     const blogId = event.target.getAttribute("id");
+     const blogId = event.target.getAttribute("data-id");
      document.location.replace(`/blogs/${blogId}`);
 };
 

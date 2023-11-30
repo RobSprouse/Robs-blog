@@ -1,13 +1,13 @@
 <!-- TODO: make this edit the current blog -->
 <div>
-     <h1>New Blog</h1>
-     <form id="newBlogForm">
+     <h1>Edit Blog</h1>
+     <form id="editBlogForm">
           <label for="title">Title</label>
-          <input type="text" id="title" name="title" placeholder="Title" />
+          <input type="text" id="title" name="title" data-id="{{blog.id}}" placeholder="{{blog.title}}" />
           <label for="content">Content</label>
-          <textarea id="content" name="content" placeholder="Content"></textarea>
-          <input type="submit" value="Create Blog" />
+          <textarea id="content" name="content" placeholder="{{blog.content}}"></textarea>
+          <input type="submit" value="Submit Changes" />
      </form>
 
 </div>
-<script src="/js/newblog.js"></script>
+<script src="/js/editBlog.js"></script>

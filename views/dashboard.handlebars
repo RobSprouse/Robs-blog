@@ -3,7 +3,7 @@
 <a href="/newBlog">Create a New Blog</a>
 {{#each blogs}}
      <div class="blog">
-          <h2>{{this.title}}</h2>
+          <h2 class="blog-title" data-id="{{this.id}}">{{this.title}}</h2>
           <p>{{this.content}}</p>
           <p>Posted by: {{this.user.username}}</p>
           <p>Date: {{this.date_created}}</p>

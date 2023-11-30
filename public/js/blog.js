@@ -9,13 +9,20 @@ async function deleteBlog(event) {
      document.location.replace("/dashboard");
 }
 
-// COMMENT: added this
+// TODO: create a function to handle the clicking of the edit button to render the edit blog page
+
+async function editBlog(event) {
+     const blogId = event.target.getAttribute("data-id");
+     document.location.replace(`/blogs/edit/${blogId}`);
+}
+
 
 const viewBlog = async (event) => {
      event.preventDefault();
-     const blogId = event.target.getAttribute("id");
+     const blogId = event.target.getAttribute("data-id");
      document.location.replace(`/blogs/${blogId}`);
 };
+
 
 document.querySelectorAll(".blog-title").forEach((blog) => {
      blog.addEventListener("click", viewBlog);
@@ -23,4 +30,8 @@ document.querySelectorAll(".blog-title").forEach((blog) => {
 
 document.querySelectorAll("#delete-blog").forEach((blog) => {
      blog.addEventListener("click", deleteBlog);
+});
+
+document.querySelectorAll("#edit-blog").forEach((blog) => {
+     blog.addEventListener("click", editBlog);
 });

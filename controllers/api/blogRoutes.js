@@ -20,7 +20,6 @@ router.delete("/:id", withAuth, async (req, res) => {
 
           res.status(200).json(blogData);
      } catch (err) {
-          alert(err);
           res.status(500).json(err);
      }
 });
