@@ -9,6 +9,18 @@ async function deleteBlog(event) {
      document.location.replace("/dashboard");
 }
 
+// COMMENT: added this
+
+const viewBlog = async (event) => {
+     event.preventDefault();
+     const blogId = event.target.getAttribute("id");
+     document.location.replace(`/blogs/${blogId}`);
+};
+
+document.querySelectorAll(".blog-title").forEach((blog) => {
+     blog.addEventListener("click", viewBlog);
+});
+
 document.querySelectorAll("#delete-blog").forEach((blog) => {
      blog.addEventListener("click", deleteBlog);
 });

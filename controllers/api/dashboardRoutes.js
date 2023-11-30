@@ -8,7 +8,6 @@ const router = express.Router();
 
 router.post("/", withAuth, async (req, res) => {
      try {
-          console.log(req.body);
           const newBlog = new Blog();
           newBlog.title = req.body.title;
           newBlog.content = req.body.content;

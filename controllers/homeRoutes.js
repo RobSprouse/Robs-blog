@@ -111,6 +111,29 @@ router.get("/blogs/:id", async (req, res) => {
           res.status(500).json(err);
      }
 });
+// TODO: make sure this route is working
+// FIXME:  see if this works
+router.get("/blogs/edit/:id", withAuth, async (req, res) => {
+     try {
+          const blogData = await Blog.findByPk(req.params.id, {
+               include: [
+                    {
+                         model: User,
+                         attributes: ["username"],
+                    },
+               ],
+          });
+
+          const blog = blogData.get({ plain: true });
+          res.render("editBlog", {
+               blog,
+               loggedIn: req.session.loggedIn,
+          });
+          console.log(blog);
+     } catch (err) {
+          res.status(500).json(err);
+     }
+});
 
 router.get("*", (req, res) => {
      res.render("homepage", {
