@@ -1,13 +1,13 @@
 <h1>Dashboard</h1>
 <h1>My Blogs</h1>
-<a href="/newBlog">Create a New Blog</a>
+<a href="/newblog">Create a New Blog</a>
 {{#each blogs}}
      <div class="blog-post">
           <h2 class="blog-title" data-id="{{this.id}}">{{this.title}}</h2>
           <p class="blog-content">{{this.content}}</p>
           <div class="createdInfo">
-          <p class="blog-author">Posted by: {{this.user.username}}</p>
-          <p class="blog-date">Date: {{this.date_created}}</p>
+               <p class="blog-author">Posted by: {{this.user.username}}</p>
+               <p class="blog-date">Date: {{this.date_created}}</p>
           </div>
           {{#isEqual blog.user_id loggedInUser_id}}
                <div class="btn-div">
