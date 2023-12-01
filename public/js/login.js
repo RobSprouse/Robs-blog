@@ -4,21 +4,21 @@
 const loginFormHandler = async (event) => {
      event.preventDefault();
 
-     const email = document.querySelector("#emailLogin").value.trim();
+     const username = document.querySelector("#userNameLogin").value.trim();
      const password = document.querySelector("#passwordLogin").value.trim();
      const logInErr = document.querySelector("#logInErr");
 
-     if (!email || !password) {
+     if (!username || !password) {
           logInErr.style.display = "block";
-          logInErr.textContent = "Please enter a valid email and password.";
+          logInErr.textContent = "Please enter a valid username and password.";
           return;
      }
 
-     if (email && password) {
+     if (username && password) {
           logInErr.style.display = "none";
           const response = await fetch("/api/users/login", {
                method: "POST",
-               body: JSON.stringify({ email, password }),
+               body: JSON.stringify({ username, password }),
                headers: { "Content-Type": "application/json" },
           });
 
