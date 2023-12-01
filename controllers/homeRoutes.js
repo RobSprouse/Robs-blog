@@ -118,7 +118,7 @@ router.get("/blogs/:id", async (req, res) => {
      }
 });
 
-// COMMENT: edit blog route
+// COMMENT: edit blog route that renders the edit blog page
 router.get("/blogs/edit/:id", withAuth, async (req, res) => {
      try {
           const blogData = await Blog.findByPk(req.params.id, {
