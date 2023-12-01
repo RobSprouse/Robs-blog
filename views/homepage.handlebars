@@ -4,7 +4,7 @@
           <p class="blog-content">{{this.content}}</p>
           <div class="createdInfo">
                <p class="blog-author">Posted by: {{this.user.username}}</p>
-               <p class="blog-date">Date: {{this.date_created}}</p>
+               <p class="blog-date">Date: {{formatDate this.date_created}}</p>
           </div>
      </div>
 {{/each}}

@@ -2,6 +2,7 @@ import express from "express";
 import { Blog, User, Comment } from "../models/index.js";
 import withAuth from "../utils/auth.js";
 import { formatDate, isEqual } from "../utils/helpers.js";
+import { format } from "mysql2";
 
 const router = express.Router();
 
@@ -142,7 +143,8 @@ router.post("/addComment/:id", withAuth, async (req, res) => {
           newComment.comment_text = req.body.comment_text;
           newComment.user_id = req.session.user_id;
           newComment.blog_id = req.params.id;
-          newComment.date_created = formatDate(new Date());
+          // newComment.date_created = formatDate();
+          // console.log(newComment.date_created);
           await newComment.save();
 
           res.status(200).json(newComment);
