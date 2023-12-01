@@ -22,3 +22,9 @@ const newBlogHandler = async (event) => {
 };
 
 document.querySelector("#editBlogForm").addEventListener("submit", newBlogHandler);
+
+document.getElementById('title').addEventListener('keydown', function(event) {
+     if (event.key === 'Enter') {
+         event.preventDefault();
+     }
+ });

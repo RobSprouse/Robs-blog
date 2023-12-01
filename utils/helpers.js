@@ -1,12 +1,7 @@
 const formatDate = (date) => {
      date = new Date(date);
-     const month = date.getMonth() + 1;
-     const day = date.getDate();
-     const year = date.getFullYear();
-     const hours = date.getHours();
-     const minutes = date.getMinutes().toString().padStart(2, '0');
-
-     return `${month}/${day}/${year} ${hours}:${minutes}`;
+     const options = { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" };
+     return date.toLocaleString("en-US", options);
 };
 
 // COMMENT: This is a helper function for handlebars to compare two values, used Bing AI to find this
