@@ -105,18 +105,17 @@ You can also edit or delete your blogs from your dashboard. Click on the edit bu
 
 The following image shows the homepage of the application:
 
-> <img src="screenshots/robs-blog-b0de7b1ff25d.herokuapp.com_.png">
+> <img src="screenshots/robs-blog-b0de7b1ff25d.herokuapp.com_.png" height="500px">
 > </br>
 
 The following image shows the dashboard of the application:
 
-> <img src="screenshots/robs-blog-b0de7b1ff25d.herokuapp.com_dashboard.png">
+> <img src="screenshots/robs-blog-b0de7b1ff25d.herokuapp.com_dashboard.png" height="500px">
 > </br>
-
 
 The following image shows an individual blog page of the application:
 
-> <img src="screenshots/robs-blog-b0de7b1ff25d.herokuapp.com_blogs_1.png">
+> <img src="screenshots/robs-blog-b0de7b1ff25d.herokuapp.com_blogs_1.png" height="500px">
 > </br>
 
 ## License
@@ -134,4 +133,3 @@ No tests are included in this application.
 ## Questions
 
 If you have any questions, please contact me at drgstriker@aol.com. You can also visit my GitHub profile at https://github.com/RobSprouse.
-
