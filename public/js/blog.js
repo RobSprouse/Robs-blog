@@ -20,18 +20,16 @@ const viewBlog = async (event) => {
      document.location.replace(`/blogs/${blogId}`);
 };
 
-// TODO: create a function to handle a new comment button click to render the new comment page
-
 const newComment = async (event) => {
      event.preventDefault();
      const blogId = event.target.getAttribute("data-id");
      document.location.replace(`/blogs/${blogId}/comment`);
 };
 
-const commentButton = document.querySelector("#add-comment");
-if (commentButton) {
-     commentButton.addEventListener("click", newComment);
-}
+const commentButtons = document.querySelectorAll(".add-comment");
+commentButtons.forEach((button) => {
+     button.addEventListener("click", newComment);
+});
 
 document.querySelectorAll(".blog-title").forEach((blog) => {
      blog.addEventListener("click", viewBlog);
