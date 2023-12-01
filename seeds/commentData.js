@@ -1,3 +1,4 @@
+// COMMENT: comment data seed for the comment table
 const commentData = [
      {
           comment_text: "This is a comment for Blog Post 1.",
@@ -67,4 +68,5 @@ const commentData = [
      },
 ];
 
+// COMMENT: export the commentData array
 export default commentData;

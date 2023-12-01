@@ -1,22 +1,23 @@
+// COMMENT: imports the required modules
 import sequelize from "../config/connection.js";
-import { User, Blog, Comment } from "../models/index.js"; // Import index.js
-
+import { User, Blog, Comment } from "../models/index.js";
 import userData from "./userData.js";
 import blogData from "./blogData.js";
 import commentData from "./commentData.js";
 
+// COMMENT: function to seed the database
 const seedDatabase = async () => {
      try {
+          // Sync all models to the database, dropping all existing tables
           await sequelize.sync({ force: true });
 
-          // Clear the database
-          await Promise.all([User.destroy({ where: {} }), Blog.destroy({ where: {} }), Comment.destroy({ where: {} })]);
-
+          // Bulk create user data
           const users = await User.bulkCreate(userData, {
                individualHooks: true,
                returning: true,
           });
 
+          // Create blogs with the user data attached
           for (const blog of blogData) {
                await Blog.create({
                     ...blog,
@@ -24,7 +25,7 @@ const seedDatabase = async () => {
                });
           }
 
-          // Wait for all blogs to be created before creating any comments
+          // Create comments with the user data attached
           await Promise.all(
                commentData.map(async (comment) => {
                     await Comment.create({
@@ -45,4 +46,5 @@ const seedDatabase = async () => {
      }
 };
 
+// COMMENT: call the seedDatabase function
 seedDatabase();

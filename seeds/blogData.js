@@ -1,3 +1,5 @@
+// COMMENT: seed data for the blog table
+
 const blogData = [
      {
           title: "Blog Post 1",
@@ -37,4 +39,5 @@ const blogData = [
      },
 ];
 
+// COMMENT: export the blogData array
 export default blogData;

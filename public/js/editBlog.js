@@ -1,3 +1,6 @@
+// COMMENT: script for the editBlog.handlebars page
+
+// COMMENT: function to handle the updating a blog post
 const editBlogHandler = async (event) => {
      event.preventDefault();
      const titleElement = document.querySelector("#title");
@@ -23,4 +26,5 @@ const editBlogHandler = async (event) => {
      document.location.replace("/dashboard");
 };
 
+// COMMENT: event listener for the edit blog form
 document.querySelector("#editBlogForm").addEventListener("submit", editBlogHandler);

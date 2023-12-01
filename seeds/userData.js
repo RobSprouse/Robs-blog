@@ -1,3 +1,4 @@
+// COMMENT: data for the user table
 const userData = [
      {
           username: "user1",
@@ -31,4 +32,5 @@ const userData = [
      },
 ];
 
+// COMMENT: export the data
 export default userData;

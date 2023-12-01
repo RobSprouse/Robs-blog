@@ -1,4 +1,4 @@
-/* COMMENT:Root and Initial Elements */
+/* COMMENT:Root and Initializing Elements */
 :root {
      --Header-footer-font: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
      --Body-font: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
@@ -17,6 +17,13 @@
      font-size: 1.03em;
 }
 
+.column {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+/* COMMENT: defining the main element tags */
 body {
      font-family: var(--Body-font);
      display: flex;
@@ -69,6 +76,7 @@ main {
      align-content: center;
 }
 
+/* COMMENT: Blog posts */
 .blog-post {
      margin: 1em;
      padding: 10px;
@@ -95,19 +103,6 @@ main {
      flex: 1 1 100%;
 }
 
-#content {
-     min-width: 500px;
-     min-height: 200px;
-     white-space: pre-wrap;
-     overflow-wrap: break-word;
-}
-
-#title {
-     min-width: 500px;
-     min-height: 60px;
-     white-space: pre-wrap;
-     overflow-wrap: break-word;
-}
 .createdInfo {
      display: flex;
      flex-direction: row;
@@ -132,6 +127,49 @@ main {
      margin: 10px;
 }
 
+/* COMMENT: Comments */
+.comment {
+     margin-top: 20px;
+     padding: 10px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+}
+
+.comment-content {
+     margin-top: 10px;
+}
+
+.comment-author {
+     font-style: italic;
+     margin: 10px;
+}
+
+.comment-date {
+     margin: 10px;
+}
+
+/* COMMENT: Input fields formatting to create or update blogs/comments */
+.blog-post-edit label,
+.blog-post-edit input,
+.blog-post-edit textarea {
+     display: block;
+}
+
+#content {
+     min-width: 500px;
+     min-height: 200px;
+     white-space: pre-wrap;
+     overflow-wrap: break-word;
+}
+
+#title {
+     min-width: 500px;
+     min-height: 60px;
+     white-space: pre-wrap;
+     overflow-wrap: break-word;
+}
+
+/* COMMENT: buttons */
 .btn-div {
      display: flex;
      flex-direction: row;
@@ -162,38 +200,6 @@ main {
      border: none;
 }
 
-.comment {
-     margin-top: 20px;
-     padding: 10px;
-     border: 1px solid #ccc;
-     border-radius: 5px;
-}
-
-.comment-content {
-     margin-top: 10px;
-}
-
-.comment-author {
-     font-style: italic;
-     margin: 10px;
-}
-
-.comment-date {
-     margin: 10px;
-}
-
-.column {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-}
-
-.blog-post-edit label,
-.blog-post-edit input,
-.blog-post-edit textarea {
-     display: block;
-}
-
 .editLabels {
      margin: 1em;
      text-decoration: underline;
@@ -204,6 +210,7 @@ main {
      align-items: center;
 }
 
+/* COMMENT: adjusting based on screen width */
 @media screen and (max-width: 750px) {
      body {
           margin: 0% 0%;

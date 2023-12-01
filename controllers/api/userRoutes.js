@@ -1,8 +1,11 @@
+// COMMENT: importing required modules
 import express from "express";
 import { User } from "../../models/index.js";
 
+// COMMENT: Creating a new router instance
 const router = express.Router();
 
+// COMMENT: Route to create a new user
 router.post("/", async (req, res) => {
      try {
           const newUser = new User();
@@ -25,6 +28,7 @@ router.post("/", async (req, res) => {
      }
 });
 
+// COMMENT: Route to login a user
 router.post("/login", async (req, res) => {
      try {
           const userData = await User.findOne({ where: { email: req.body.email } });
@@ -51,6 +55,7 @@ router.post("/login", async (req, res) => {
      }
 });
 
+// COMMENT: Route to logout a user
 router.post("/logout", (req, res) => {
      console.log("logout");
      if (req.session.loggedIn) {
@@ -62,4 +67,5 @@ router.post("/logout", (req, res) => {
      }
 });
 
+// COMMENT: Exporting router instance
 export default router;

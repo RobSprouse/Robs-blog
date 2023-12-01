@@ -1,10 +1,13 @@
+// COMMENT: Importing required modules
 import express from "express";
 import { Blog } from "../../models/index.js";
 import withAuth from "../../utils/auth.js";
 import { formatDate, isEqual } from "../../utils/helpers.js";
 
+// COMMENT: Creating a new router instance
 const router = express.Router();
 
+// COMMENT: Route to create a new blog post
 router.post("/", withAuth, async (req, res) => {
      try {
           const newBlog = new Blog();
@@ -20,4 +23,5 @@ router.post("/", withAuth, async (req, res) => {
      }
 });
 
+// COMMENT: exporting router instance
 export default router;

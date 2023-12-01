@@ -1,11 +1,12 @@
+// COMMENT: importing required modules
 import express from "express";
 import { Blog, User, Comment } from "../models/index.js";
 import withAuth from "../utils/auth.js";
-import { formatDate, isEqual } from "../utils/helpers.js";
-import { format } from "mysql2";
 
+// COMMENT: creating a router instance
 const router = express.Router();
 
+// COMMENT: signup route
 router.get("/signup", async (req, res) => {
      try {
           if (req.session.loggedIn) {
@@ -18,6 +19,7 @@ router.get("/signup", async (req, res) => {
      }
 });
 
+// COMMENT: homepage route that renders all blogs
 router.get("/", async (req, res) => {
      try {
           const blogData = await Blog.findAll({
@@ -34,13 +36,13 @@ router.get("/", async (req, res) => {
           res.render("homepage", {
                blogs,
                loggedIn: req.session.loggedIn,
-               formatDate,
           });
      } catch (err) {
           res.status(500).json(err);
      }
 });
 
+// COMMENT: dashboard route that renders all blogs created by the logged in user
 router.get("/dashboard", withAuth, async (req, res) => {
      try {
           const blogData = await Blog.findAll({
@@ -66,12 +68,14 @@ router.get("/dashboard", withAuth, async (req, res) => {
      }
 });
 
+// COMMENT: new blog route
 router.get("/newblog", withAuth, (req, res) => {
      res.render("newblog", {
           loggedIn: req.session.loggedIn,
      });
 });
 
+// COMMENT: login route
 router.get("/login", (req, res) => {
      if (req.session.loggedIn) {
           res.redirect("/");
@@ -83,6 +87,7 @@ router.get("/login", (req, res) => {
      });
 });
 
+// COMMENT: get a single blog by id
 router.get("/blogs/:id", async (req, res) => {
      try {
           const blogData = await Blog.findByPk(req.params.id, {
@@ -108,12 +113,12 @@ router.get("/blogs/:id", async (req, res) => {
                loggedIn: req.session.loggedIn,
                loggedInUser_id: req.session.user_id,
           });
-          console.log(blog);
      } catch (err) {
           res.status(500).json(err);
      }
 });
 
+// COMMENT: edit blog route
 router.get("/blogs/edit/:id", withAuth, async (req, res) => {
      try {
           const blogData = await Blog.findByPk(req.params.id, {
@@ -135,16 +140,13 @@ router.get("/blogs/edit/:id", withAuth, async (req, res) => {
      }
 });
 
-// TODO: add a route to add a new comment to a blog post
-
+// COMMENT: add comment route
 router.post("/addComment/:id", withAuth, async (req, res) => {
      try {
           const newComment = new Comment();
           newComment.comment_text = req.body.comment_text;
           newComment.user_id = req.session.user_id;
           newComment.blog_id = req.params.id;
-          // newComment.date_created = formatDate();
-          // console.log(newComment.date_created);
           await newComment.save();
 
           res.status(200).json(newComment);
@@ -153,8 +155,7 @@ router.post("/addComment/:id", withAuth, async (req, res) => {
      }
 });
 
-// TODO: add a route to render the new comment page
-
+// COMMENT: edit comment route
 router.get("/blogs/:id/comment", withAuth, async (req, res) => {
      try {
           const blogData = await Blog.findByPk(req.params.id, {
@@ -171,16 +172,17 @@ router.get("/blogs/:id/comment", withAuth, async (req, res) => {
                blog,
                loggedIn: req.session.loggedIn,
           });
-          console.log(blog);
      } catch (err) {
           res.status(500).json(err);
      }
 });
 
+// COMMENT: catch all route that are not defined
 router.get("*", (req, res) => {
      res.render("homepage", {
           loggedIn: req.session.loggedIn,
      });
 });
 
+// COMMENT: exporting router
 export default router;

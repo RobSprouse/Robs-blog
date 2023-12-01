@@ -1,6 +1,7 @@
 <h1>Dashboard</h1>
 <h1>My Blogs</h1>
 <a href="/newblog">Create a New Blog</a>
+{{! for each blog, display it's contents, the ability to edit and delete it, and add a comment button }}
 {{#each blogs}}
      <div class="blog-post">
           <h2 class="blog-title" data-id="{{this.id}}">{{this.title}}</h2>
@@ -9,12 +10,10 @@
                <p class="blog-author">Posted by: {{this.user.username}}</p>
                <p class="blog-date">Date: {{formatDate this.date_created}}</p>
           </div>
-          {{#isEqual blog.user_id loggedInUser_id}}
-               <div class="btn-div">
-                    <button class="btn btn-primary" id="edit-blog" data-id="{{this.id}}">Edit</button>
-                    <button class="btn btn-danger" id="delete-blog" data-id="{{this.id}}">Delete</button>
-               </div>
-          {{/isEqual}}
+          <div class="btn-div">
+               <button class="btn btn-primary" id="edit-blog" data-id="{{this.id}}">Edit</button>
+               <button class="btn btn-danger" id="delete-blog" data-id="{{this.id}}">Delete</button>
+          </div>
           <div class="btn-div">
                <button class="btn btn-primary add-comment" id="add-comment" data-id="{{this.id}}">Add Comment</button>
 

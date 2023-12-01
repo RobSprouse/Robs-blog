@@ -1,3 +1,4 @@
+{{! individual blog post }}
 <div class="blog-post">
      <h2 class="blog-title" data-id="{{blog.id}}">{{blog.title}}</h2>
      <p class="blog-content">{{blog.content}}</p>
@@ -5,17 +6,20 @@
           <p class="blog-author">Posted by: {{blog.user.username}}</p>
           <p class="blog-date">Date: {{formatDate blog.date_created}}</p>
      </div>
+     {{! if the blog's owner and the logged in user is the same user, display the edit and delete buttons for the blog }}
      {{#isEqual blog.user_id loggedInUser_id}}
           <div class="btn-div">
                <button class="btn btn-primary" id="edit-blog" data-id="{{blog.id}}">Edit</button>
                <button class="btn btn-danger" id="delete-blog" data-id="{{blog.id}}">Delete</button>
           </div>
      {{/isEqual}}
+     {{! if a user is logged in, they can add a comment }}
      {{#if loggedIn}}
           <div class="btn-div">
                <button class="btn btn-primary add-comment" id="add-comment" data-id="{{blog.id}}">Add Comment</button>
           </div>
      {{/if}}
+     {{! displays all comments associated with blog }}
      {{#each blog.comments}}
           <div class="comment">
                <p class="comment-content">{{this.comment_text}}</p>
@@ -26,4 +30,5 @@
           </div>
      {{/each}}
 </div>
+
 <script src="/js/blog.js"></script>

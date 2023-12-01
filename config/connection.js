@@ -1,10 +1,13 @@
+// COMMENT: Importing required modules
 import Sequelize from "sequelize";
 import dotenv from "dotenv";
 
+// COMMENT: Load environment variables
 dotenv.config();
 
 let sequelize;
 
+// COMMENT: Create connection to our database, pass in the MySQL information for username and password
 if (process.env.JAWSDB_URL) {
      sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
@@ -15,5 +18,5 @@ if (process.env.JAWSDB_URL) {
      });
 }
 
-
+// COMMENT: Exporting sequelize
 export default sequelize;

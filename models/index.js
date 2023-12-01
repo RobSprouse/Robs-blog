@@ -1,7 +1,9 @@
+// COMMENT: imports required modules
 import User from "./User.js";
 import Blog from "./Blog.js";
 import Comment from "./Comment.js";
 
+// COMMENT: creates associations between the models
 User.hasMany(Blog, {
      foreignKey: "user_id",
      onDelete: "CASCADE",
@@ -29,4 +31,5 @@ Comment.belongsTo(Blog, {
      foreignKey: "blog_id",
 });
 
+// COMMENT: exports the models
 export { User, Blog, Comment };

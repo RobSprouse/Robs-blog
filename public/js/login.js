@@ -1,3 +1,6 @@
+// COMMENT: script for the login.handlebars page
+
+// COMMENT: function to handle the login form
 const loginFormHandler = async (event) => {
      event.preventDefault();
 
@@ -31,4 +34,5 @@ const loginFormHandler = async (event) => {
      }
 };
 
+// COMMENT: calls the loginFormHandler function when the login form is submitted
 document.querySelector("#formLogIn").addEventListener("submit", loginFormHandler);

@@ -7,6 +7,7 @@ CREATE DATABASE robsBlog_db;
 USE robsBlog_db;
 
 -- Shows all blogs and their comments with the user id and name attached to each of them
+-- USED as a test to see if the database was working correctly and seeded
 -- SELECT
 --      blog.id AS blog_id,
 --      blog.title,
@@ -26,7 +27,4 @@ USE robsBlog_db;
 --      LEFT JOIN user AS comment_user ON comment.user_id = comment_user.id
 -- ORDER BY
 --      blog.id;
-
 --      SHOW INDEX FROM user;
-
-     

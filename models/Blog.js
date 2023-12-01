@@ -1,6 +1,8 @@
+// COMMENT: imports required modules
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/connection.js";
 
+// COMMENT: creates a Blog model
 class Blog extends Model {}
 Blog.init(
      {
@@ -40,4 +42,5 @@ Blog.init(
      }
 );
 
+// COMMENT: exports the Blog model
 export default Blog;

@@ -1,6 +1,8 @@
+// COMMENT: imports required modules
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/connection.js";
 
+// COMMENT: creates a Comment model
 class Comment extends Model {}
 Comment.init(
      {
@@ -43,4 +45,5 @@ Comment.init(
      }
 );
 
+// COMMENT: exports the Comment model
 export default Comment;

@@ -1,3 +1,4 @@
+// COMMENT: helper function to format date
 const formatDate = (date) => {
      date = new Date(date);
      const options = { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" };
@@ -13,12 +14,5 @@ function isEqual(a, b, options) {
      }
 }
 
-// COMMENT: This is a helper function for handlebars to create sections, used Bing AI to find this
-function section(name, options) {
-     if (!this._sections) this._sections = {};
-     this._sections[name] = options.fn(this);
-     return null;
-}
-
+// COMMENT: Exporting helper functions
 export { formatDate, isEqual };
-export default section;

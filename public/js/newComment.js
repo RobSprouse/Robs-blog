@@ -1,3 +1,6 @@
+// COMMENT: script for the newComment.handlebars page
+
+// COMMENT: function to handle the adding of a comment
 const addCommentHandler = async (event) => {
      event.preventDefault();
 
@@ -18,4 +21,5 @@ const addCommentHandler = async (event) => {
      }
 };
 
+// COMMENT: event listener for the add comment form
 document.querySelector("#add-comment-form").addEventListener("submit", addCommentHandler);
