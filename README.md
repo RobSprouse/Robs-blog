@@ -97,6 +97,12 @@ This application is deployed on Heroku at the following link: [Rob's Blog](https
 
 Click on the link to view the application in your browser. Sign up for an account and it will log you in. Then you can start creating blog posts and comment on other users' posts.
 
+To create a blog, click on the dashboard link and it will bring you to your dashboard where you're blogs will be displayed. Click on the "Create New Blog" button and it will bring you to a page where you can enter a title and the content of your blog. Click on the button to sumbit your blog and it will be saved to the database and displayed on your dashboard.
+
+Click on an existing blog title to view the blog. A button will be present to add a comment to the blog. Click on the button and enter your comment. Click on the button to submit your comment and it will be saved to the database and displayed on the blog.
+
+You can also edit or delete your blogs from your dashboard. Click on the edit button to edit your blog. Click on the delete button to delete your blog.
+
 The following image shows the homepage of the application:
 
 > <img src="screenshots/robs-blog-b0de7b1ff25d.herokuapp.com_.png">
