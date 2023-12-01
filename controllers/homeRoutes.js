@@ -66,7 +66,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 });
 
 router.get("/newblog", withAuth, (req, res) => {
-     res.render("newBlog", {
+     res.render("newblog", {
           loggedIn: req.session.loggedIn,
      });
 });
